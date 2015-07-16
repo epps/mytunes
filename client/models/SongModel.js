@@ -8,6 +8,11 @@ var SongModel = Backbone.Model.extend({
 
   addSongToQueue: function() {
     this.trigger('enqueue', this);
+  },
+
+  removeSongFromQueue: function() {
+    console.log("This is the trigger event broadcasts");
+    this.trigger('removeSong', this);
   }
 
 });
