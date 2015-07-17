@@ -13,6 +13,14 @@ var AppView = Backbone.View.extend({
       this.playerView.setSong(model.get('currentSong'));
     }, this);
 
+    var context = this;
+    //var contextualSongQueue = this.model.get('songQueue');
+    this.playerView.$el.on('ended', function() {
+      console.log("I am finished!");
+      context.model.get('songQueue').shift();
+      context.playerView.setSong(context.model.get('songQueue').at(0));
+      //THIS IS WHERE WE ENDED
+    });
   },
 
   render: function(){

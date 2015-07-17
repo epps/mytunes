@@ -17,11 +17,17 @@ var AppModel = Backbone.Model.extend({
     // }, this);
 
     params.library.on('enqueue', function(song){
+      if(this.get('songQueue').length === 0) {
+        this.set('currentSong', song);
+      }
       this.get('songQueue').add(song);
     }, this);
 
+    params.library.on('dequeue', function(song){
+      console.log("Dequeue:", song);
+    }, this);
+
     params.library.on('removeSong', function(song){
-      console.log("Has anything been received?");
       this.get('songQueue').remove(song);
     }, this);
   }
